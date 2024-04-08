@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import { useState } from "react";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Spinner, Flex } from "@chakra-ui/react";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -41,7 +43,19 @@ function App() {
         </div>
       </div>
       {isLoading ? (
-        <div>Now Loading...</div>
+        <ChakraProvider>
+          <Flex align="center" justify="center" height="100vh">
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="xl"
+              width="200px"
+              height="200px"
+            />
+          </Flex>
+        </ChakraProvider>
       ) : (
         <main>
           <div className="cards-container">
